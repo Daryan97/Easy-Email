@@ -1,6 +1,6 @@
 # Easy-Email
 
-Easy-Email is an AI assistant that helps you generate and send emails professionally. It uses the GPT-3.5 model to generate email content and utilizes Gmail, Outlook, and other email APIs to send emails directly through the application, saving time and improving efficiency.
+Easy-Email is an AI assistant that helps you generate and send emails professionally. It uses the ChatGPT and Workers AI to generate email content and utilizes Gmail, Outlook, and other email APIs to send emails directly through the application, saving time and improving efficiency.
 
 ## Contents
 
