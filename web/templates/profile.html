@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<section class="section profile">
+  <div class="row">
+    <div class="col-xl-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <div id="gravatarProfile"></div>
+            <h5 class="mt-3">{{user.first_name}} {{user.last_name}}</h5>
+            <p class="text-muted">@{{user.username}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-9">
+
+      <div class="card">
+        <div class="card-body pt-3">
+          <!-- Bordered Tabs -->
+          <ul class="nav nav-tabs nav-tabs-bordered">
+
+            <li class="nav-item">
+              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change
+                Password</button>
+            </li>
+
+          </ul>
+          <div class="tab-content pt-2">
+
+            <div class="tab-pane fade profile-overview show active" id="profile-overview">
+              <h5 class="card-title">Profile Details</h5>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                <div class="col-lg-9 col-md-8" id="profileFullName">{{user.first_name}} {{user.last_name}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Username</div>
+                <div class="col-lg-9 col-md-8" id="profileUsername">@{{user.username}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Login Email</div>
+                <div class="col-lg-9 col-md-8" id="profileEmail">{{user.email}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Phone</div>
+                <div class="col-lg-9 col-md-8" id="profilePhone">{{user.phone_code}} {{user.phone_number}}</div>
+              </div>
+
+              <h5 class="card-title">Work Details</h5>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Company</div>
+                <div class="col-lg-9 col-md-8" id="profileCompany">{% if user.company %}{{user.company}}{% endif %}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Work Title</div>
+                <div class="col-lg-9 col-md-8" id="profileWork">{% if user.work_title %}{{user.work_title}}{% endif %}</div>
+              </div>
+
+              <h5 class="card-title">Education Details</h5>
+
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">College</div>
+                <div class="col-lg-9 col-md-8" id="profileCollege">{% if user.college %}{{user.college}}{% endif %}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Major</div>
+                <div class="col-lg-9 col-md-8" id="profileMajor">{% if user.major %}{{user.major}}{% endif %}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-3 col-md-4 label">Graduation Year</div>
+                <div class="col-lg-9 col-md-8" id="profileGraduation">{% if user.graduation_year %}{{user.graduation_year}}{% endif %}</div>
+              </div>
+
+            </div>
+
+            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+              <!-- Profile Edit Form -->
+              <form class="needs-validation" id="editProfile" novalidate>
+                <!-- Profile Email -->
+                <h5 class="card-title mb-3">Update Email</h5>
+                <!-- Email -->
+                <div class="row mb-3">
+                  <label for="Email" class="col-md-4 col-lg-3 col-form-label">Login Email</label>
+                  <div class="col-md-8 col-lg-9 has-validation">
+                    <div class="input-group" id="changeEmail">
+                      <span class="input-group-text {% if user.email_confirmed_at %}text-success{% else %}text-danger{% endif %}" id="emailStatus">
+                      {% if user.email_confirmed_at %}Verified{% else %}Unverified{% endif %}
+                      </span>
+                      <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email" value="{% if user.email %}{{user.email}}{% endif %}"
+                        required>
+                        <input type="number" name="emailOTP" class="form-control d-none" id="emailOTP" placeholder="6-digit OTP" max="999999">
+                        <button class="btn-primary text-white input-group-text d-none" id="resendOTP">Resend</button>
+                      <button class="btn-primary text-white input-group-text" id="changeEmailBtn" {% if user.email_confirmed_at %}disabled{% endif %}>
+                        {% if user.email_confirmed_at %}Verified{% else %}Verify{% endif %}
+                      </button>
+                      <div class="invalid-feedback">Please your email.</div>
+                    </div>
+                  </div>
+                </div>
+                <h5 class="card-title">Profile Details</h5>
+                <!-- First Name & Last Name -->
+                <div class="row mb-3">
+                  <label for="first_name" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                  <div class="col-md-8 col-lg-9">
+                    <div class="row">
+                        <div class="col-md-6 mb-sm-3 mb-md-0 has-validation">
+                        <div class="input-group">
+                          <span class="input-group-text">
+                          <i class="bi bi-person"></i>
+                          </span>
+                          <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First Name" value="{% if user.first_name %}{{user.first_name}}{% endif %}" required>
+                          <div class="invalid-feedback">Please your first name.</div>
+                        </div>
+                        </div>
+                        <div class="col-md-6 has-validation">
+                        <div class="input-group">
+                          <span class="input-group-text">
+                          <i class="bi bi-person"></i>
+                          </span>
+                          <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last Name" value="{% if user.last_name %}{{user.last_name}}{% endif %}"
+                          required>
+                          <div class="invalid-feedback">Please your last name.</div>
+                        </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Username -->
+                <div class="row mb-3">
+                  <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
+                    <div class="col-md-8 col-lg-9 has-validation">
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="bi bi-person"></i>
+                      </span>
+                      <input name="username" type="text" class="form-control" id="username" placeholder="Username" value="{% if user.username %}{{user.username}}{% endif %}"
+                      required>
+                      <div class="invalid-feedback">Please your username.</div>
+                    </div>
+                    </div>
+                </div>
+                <!-- Phone -->
+                <div class="row mb-3">
+                  <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                  <div class="col-md-8 col-lg-9 has-validation">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <select class="form-select" id="phone_code" name="phone_code" data-user-code="{% if user.phone_code %}{{user.phone_code}}{% endif %}" required>
+                        </select>
+                      </div>
+                      <input type="tel" name="phone" class="form-control" id="phone" placeholder="Phone number" value="{% if user.phone_number %}{{user.phone_number}}{% endif %}" required>
+                      <div class="invalid-feedback">Please your phone number.</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Work Details -->
+                <h5 class="card-title">Work Details</h5>
+                <!-- Company -->
+                <div class="row mb-3">
+                  <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                    <div class="col-md-8 col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-text">
+                      <i class="bi bi-building"></i>
+                      </span>
+                      <input name="company" type="text" class="form-control" id="company" placeholder="Company" value="{% if user.company %}{{user.company}}{% endif %}">
+                    </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="work_title" class="col-md-4 col-lg-3 col-form-label">Work title</label>
+                    <div class="col-md-8 col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-text">
+                      <i class="bi bi-briefcase"></i>
+                      </span>
+                      <input name="work_title" type="text" class="form-control" id="Job" placeholder="Work Title" value="{% if user.work_title %}{{user.work_title}}{% endif %}">
+                    </div>
+                    </div>
+                </div>
+                <!-- Education Details -->
+                <h5 class="card-title mt-4">Education Details</h5>
+                <!-- College -->
+                <div class="row mb-3">
+                  <label for="college" class="col-md-4 col-lg-3 col-form-label">College</label>
+                    <div class="col-md-8 col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-text">
+                      <i class="bi bi-building"></i>
+                      </span>
+                      <input name="college" type="text" class="form-control" id="college" placeholder="College"
+                      value="{% if user.college %}{{user.college}}{% endif %}">
+                    </div>
+                    </div>
+                </div>
+                <!-- Major -->
+                <div class="row mb-3">
+                  <label for="major" class="col-md-4 col-lg-3 col-form-label">Major</label>
+                    <div class="col-md-8 col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-text">
+                      <i class="bi bi-book"></i>
+                      </span>
+                      <input name="major" type="text" placeholder="Major" class="form-control" id="major" value="{% if user.major %}{{user.major}}{% endif %}">
+                    </div>
+                    </div>
+                </div>
+                <!-- Graduation Year -->
+                <div class="row mb-3">
+                  <label for="graduation_year" class="col-md-4 col-lg-3 col-form-label">Graduation Year</label>
+                    <div class="col-md-8 col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-text">
+                      <i class="bi bi-calendar"></i>
+                      </span>
+                        <input name="graduation_year" type="number" min="1900" class="form-control" id="graduation_year" placeholder="Graduation Year" value="{% if user.graduation_year %}{{user.graduation_year}}{% endif %}">
+                    </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" id="editProfileBtn" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="tab-pane fade pt-3" id="profile-settings">
+              <!-- Settings Form -->
+              <form>
+
+                <div class="row mb-3">
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                  <div class="col-md-8 col-lg-9">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                      <label class="form-check-label" for="changesMade">
+                        Changes made to your account
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                      <label class="form-check-label" for="newProducts">
+                        Information on new products and services
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="proOffers">
+                      <label class="form-check-label" for="proOffers">
+                        Marketing and promo offers
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                      <label class="form-check-label" for="securityNotify">
+                        Security alerts
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form><!-- End settings Form -->
+
+            </div>
+
+            <div class="tab-pane fade pt-3" id="profile-change-password">
+              <!-- Change Password Form -->
+              <form id="changePassword">
+
+                <div class="row mb-3">
+                  <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input name="password" type="password" class="form-control" id="currentPassword" placeholder="Current Password">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                  <div class="col-md-8 col-lg-9">
+                    <div class="row">
+                      <div class="col-md-6 mb-sm-3 mb-md-0">
+                        <input name="new_password" type="password" class="form-control" id="newPassword" placeholder="New Password">
+                      </div>
+                      <div class="col-md-6">
+                        <input name="confirm_password" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" id="changePasswordBtn" class="btn btn-primary">Change Password</button>
+                </div>
+              </form><!-- End Change Password Form -->
+              <div class="text-center mt-2">
+                <a href="/forgot-password">Forgot Password?</a>
+              </div>
+            </div>
+
+          </div><!-- End Bordered Tabs -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+{% endblock %}

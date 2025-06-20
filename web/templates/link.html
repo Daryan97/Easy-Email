@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  {% if message %}
+  <div class="alert alert-{{type}} alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-6">
+          Link Account
+        </div>
+        <div class="col-6 text-end">
+          <button type="button" class="btn btn-primary" id="linkAccount">
+            <i class="bi bi-plus"></i>
+            <span>Add</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="media">
+        <div class="media-body" id="link-list">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+<!-- Vendor JS Files -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- End Vendor JS Files -->
+
+<!-- Template Main JS File -->
+
+</body>
+
+</html>

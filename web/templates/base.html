@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{% block title %}Easy-Email{% endblock %}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/static/img/favicon.png" rel="icon">
+    <link href="/static/img/favicon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tributejs@5.1.3/dist/tribute.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <!-- Logo -->
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/dashboard" class="logo d-flex align-items-center">
+                <img src="/static/img/easy-email.png" alt="">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+
+        <!-- Icons Navigation -->
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <!-- Profile Nav -->
+                <li class="nav-item dropdown show pe-3">
+
+                    <button class="nav-link nav-profile d-flex align-items-center pe-0 dropdown-toggle" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="d-none d-md-block ps-2">{{user.first_name}} {{user.last_name}}</span>
+                    </button>
+
+                    <!-- Profile Dropdown Items -->
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>{{user.first_name}} {{user.last_name}}</h6>
+                            <span>@{{user.username}}</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/profile">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <button class="dropdown-item d-flex align-items-center" id="logoutBtn">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Log Out</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-nav h-100 d-flex flex-column justify-content-between" id="sidebar-nav">
+            <!-- Dashboard Nav -->
+            <div>
+                <div class="nav-heading">Main</div>
+                <div class="nav-item">
+                    <a class="nav-link {% if request.path != '/dashboard' %}collapsed{% endif %}" href="/dashboard">
+                        <i class="bi bi-grid"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link {% if request.path != '/dashboard/inbox' %}collapsed{% endif %}"
+                        href="/dashboard/inbox">
+                        <i class="bi bi-envelope"></i>
+                        <span>Inbox</span>
+                    </a>
+                </div>
+
+            </div>
+            <div>
+                <div class="nav-heading">History</div>
+                <div id="chatHistory">
+                    <div class="text-center">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- End Dashboard Nav -->
+            <div>
+                <div class="nav-heading">Account</div>
+                <div class="nav-item">
+                    <a class="nav-link {% if request.path != '/profile'%}collapsed{% endif %}" href="/profile">
+                        <i class="bi bi-person"></i>
+                        <span>
+                            Profile
+                            {% if user.has_role('admin') %}
+                            {% set role = user.role_info('admin') %}
+                            <span class="badge bg-primary" data-bs-toggle-tt="tooltip" data-bs-placement="right"
+                                title="Expires at: {{role.expires_at | rfc822}}">Admin</span>
+                            {% endif %}
+                        </span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link {% if request.path != '/profile/link'%}collapsed{% endif %}"
+                        href="/profile/link">
+                        <i class="bi bi-link-45deg"></i>
+                        <span>Link Account</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link {% if request.path != '/profile/contacts' and request.path != '' %}collapsed{% endif %}"
+                        href="/profile/contacts">
+                        <i class="bi bi-person-rolodex"></i>
+                        <span>Contacts</span>
+                    </a>
+                </div>
+            </div>
+            <!-- End Profile Page Nav -->
+        </div>
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>{{ request.path.split('/')[-1]|capitalize }}</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    {% set path_parts = request.path.split('/') %}
+                    {% if path_parts[1] != 'dashboard' %}
+                    <li class="breadcrumb-item">
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    {% endif %}
+                    {% for link in request.path.split('/') %}
+                    {% if link != '' %}
+                    {% if loop.last %}
+                    <li class="breadcrumb-item active">{{ link|capitalize }}</li>
+                    {% else %}
+                    <li class="breadcrumb-item">
+                        <a href="/{{ link }}">{{ link|capitalize }}</a>
+                    </li>
+                    {% endif %}
+                    {% endif %}
+                    {% if link == '' and loop.last %}
+                    <li class="breadcrumb-item active">Dashboard</li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+            </nav>
+        </div>
+
+        {% block content %}{% endblock %}
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Easy-Email</span></strong>. All Rights Reserved
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Scroll to top button -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+    <!-- End Scroll to top button -->
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tributejs@5.1.3/dist/tribute.min.js"></script>
+    <!-- End Vendor JS Files -->
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/functions.js"></script>
+    {% if request.path == '/dashboard' %}
+    <script src="/static/js/email.js"></script>
+    {% elif request.path == '/dashboard/inbox' %}
+    <script src="/static/js/inbox.js" defer></script>
+    {% elif request.path == '/profile/link' %}
+    <script src="/static/js/link.js"></script>
+    {% elif request.path == '/profile/contacts' or request.path == '/profile' %}
+    <script src="/static/js/profile.js"></script>
+    {% endif %}
+    <!-- End Template Main JS File -->
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Contacts{% endblock %}
+{% block content %}
+<section class="section contacts">
+  <div class="row g-3" id="contactsRow">
+    <!-- Contact Profile Side Panel -->
+    <div class="col-md-4 d-none" id="contactPr">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+          <h5 class="mb-0 text-white" id="contactTitle">Contact</h5>
+          <button class="btn btn-sm text-white" type="button" id="closePr" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="card-body" id="contactBody"></div>
+      </div>
+    </div>
+
+    <!-- Contacts List -->
+    <div class="col-md-12" id="contactsCol">
+      <div class="card shadow-sm border-0">
+        <div class="card-header d-flex justify-content-between align-items-center bg-light">
+          <h5 class="mb-0">Contacts</h5>
+          <button class="btn btn-primary" id="addContact">
+            <i class="bi bi-plus-lg me-1"></i> Add
+          </button>
+        </div>
+        <div class="card-body pt-3">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle text-center mb-0" id="contactsList">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Loading...
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination -->
+          <nav class="mt-4" aria-label="Contact Navigation">
+            <ul class="pagination justify-content-center" id="contactsNav" data-page=""></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
