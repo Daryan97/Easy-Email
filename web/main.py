@@ -155,19 +155,6 @@ def contacts():
     # Render the contacts template
     return render_template('contacts.html', user=current_user)
 
-# Define the settings route
-@main.route('/contact')
-@terms_accepted_required
-@privacy_accepted_required
-@jwt_required()
-def contact():
-    # Check if the user has verified their email
-    if not current_user.email_confirmed_at:
-        # Redirect to the verify page
-        return redirect(url_for('main.verify'))
-    # Render the contact template
-    return render_template('contact.html', user=current_user)
-
 # Define the error route
 @main.route('/error')
 def error():
