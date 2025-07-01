@@ -18,7 +18,7 @@ from models.chat import Chat as ChatModel, ChatMessages
 chat_ns = Namespace('chat', description='Chat related operations API')
 
 # Create rate limit for Chat API
-rate_limiter = limiter.shared_limit("50 per minute", 
+rate_limiter = limiter.shared_limit("400 per minute", 
                                     key_func=rate_limit_key, 
                                     scope='api', 
                                     error_message='Too many requests, please slow down',

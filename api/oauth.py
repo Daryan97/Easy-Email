@@ -17,7 +17,7 @@ from functions.oauth import Google, Microsoft
 oauth_ns = Namespace('link', description='OAuth related operations API')
 
 # Create rate limit for OAuth API
-rate_limiter = limiter.shared_limit("25 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
+rate_limiter = limiter.shared_limit("300 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
 
 # Apply decorators to OAuth API
 oauth_ns.decorators = [jwt_required(), privacy_accepted_required, terms_accepted_required, rate_limiter]

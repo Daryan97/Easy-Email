@@ -19,7 +19,7 @@ from functions.api import rate_limit_key
 user_ns = Namespace('user', description='User Account operations API')
 
 # Create rate limiter for User API
-rate_limiter = limiter.shared_limit("25 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
+rate_limiter = limiter.shared_limit("450 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
 
 # set rate limit for User API
 user_ns.decorators = [rate_limiter]

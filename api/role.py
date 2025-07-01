@@ -15,7 +15,7 @@ from functions.api import rate_limit_key
 role_ns = Namespace('role', description='Role related operations API')
 
 # Create rate limit for Role API
-rate_limiter = limiter.shared_limit("10 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
+rate_limiter = limiter.shared_limit("150 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
 
 # Apply decorators to Role API
 role_ns.decorators = [jwt_required(), admin_required, rate_limiter]

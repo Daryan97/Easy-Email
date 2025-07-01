@@ -16,7 +16,7 @@ from functions.api import rate_limit_key
 contact_ns = Namespace('contact', description='Contact related operations API')
 
 # Rate limit for contact API
-rate_limiter = limiter.shared_limit("25 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
+rate_limiter = limiter.shared_limit("300 per minute", key_func=rate_limit_key, scope='api', error_message='Too many requests, please slow down')
 
 # Apply decorators to contact API
 contact_ns.decorators = [jwt_required(), terms_accepted_required, privacy_accepted_required, rate_limiter]
