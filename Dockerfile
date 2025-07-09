@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5005
 
 # Run the application with Gunicorn
-CMD ["gunicorn", "--log-level", "debug", "-b", "0.0.0.0:5005", "--workers", "5", "--timeout", "240", "--worker-class", "gevent", "--certfile=cert2.pem", "--keyfile=privkey2.pem", "app:app"]
+CMD ["sh", "-c", "gunicorn --log-level debug -b 0.0.0.0:5005 --workers 5 --timeout 240 --worker-class gevent --certfile=$SSL_CERT_FILE --keyfile=$SSL_KEY_FILE app:app"]

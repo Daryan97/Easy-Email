@@ -27,3 +27,11 @@ LICENSE
 README.md
 .gitignore
 .env
+.env.example
+README.md
+docker-compose.yml
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+**/__pycache__

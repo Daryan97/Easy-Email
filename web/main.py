@@ -172,6 +172,8 @@ def error():
     # Render the error template
     return render_template('error.html', code=code, message=message)
 
+GOOGLE_CLIENT_SECRET = env.get('GOOGLE_CLIENT_SECRET')
+
 # Define the link service route
 @main.route('/link/<string:service>')
 @terms_accepted_required
@@ -181,7 +183,7 @@ def link_account(service):
     if service == 'google':
         # Create a Google OAuth flow
         flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-            'client_secret.json',
+            GOOGLE_CLIENT_SECRET,
             scopes=GOOGLE_SCOPES)
 
         # Set the redirect URI
@@ -233,7 +235,7 @@ def link_callback(service):
 
             # Create a Google OAuth flow
             flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-                'client_secret.json',
+                GOOGLE_CLIENT_SECRET,
                 scopes=GOOGLE_SCOPES,
                 state=state)
 
