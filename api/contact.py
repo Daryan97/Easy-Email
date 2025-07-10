@@ -44,10 +44,6 @@ class UserContacts(Resource):
         # Get data from request
         data = request.get_json()
 
-        # Check if contact name is valid
-        if not re.match(r'^[A-Za-z0-9\s]+$', data["name"]):
-            contact_ns.abort(400, 'Invalid contact name')
-
         # Check if contact email is valid
         validate = Email.validate_email(data["email"], True)
         if isinstance(validate, str):
@@ -184,10 +180,6 @@ class UserContact(Resource):
         # Update contact data
         # Update contact name
         if "name" in data:
-            # Validate contact name
-            if not re.match(r'^[A-Za-z0-9\s]+$', data["name"]):
-                contact_ns.abort(400, 'Invalid contact name')
-
             # Check if contact name is different from current contact name
             if data["name"] != contact.name:
                 # Update contact name
