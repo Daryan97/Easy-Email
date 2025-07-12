@@ -492,11 +492,15 @@ class ChatAssistant:
 
         messages = [
             {"role": "system", "content": (
-                "You are an email generator. Based on the provided details, generate a concise and relevant draft reply. "
-                "Ensure the reply aligns with the original email’s tone and context. Include appropriate greetings (e.g., \"Dear,\" \"Hello\") "
-                "and a closing signature (e.g., \"Best regards,\" \"Sincerely\") based on the tone. Do not include introductory phrases, placeholders "
-                "(e.g., \"[your name]\"), unrelated content, or a subject line. Focus solely on generating the reply content. "
-                f"Today's date is {today_date_time}."
+                "You are an email reply generator. Your task is to write a concise and relevant reply to the provided email, "
+                "aligning with its tone and context. Include appropriate greetings and a closing signature. "
+                "Do NOT:\n"
+                "- Include subject lines\n"
+                "- Add introductory phrases (e.g., 'Here is the draft reply:')\n"
+                "- Use placeholders (e.g., '[your name]')\n"
+                "- Rewrite or edit the original email\n"
+                "Output only the reply content."
+                f" Today's date is {today_date_time}."
             )},
             {"role": "user", "content": text},
             {"role": "user", "content": user_prompt}

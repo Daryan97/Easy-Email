@@ -804,13 +804,18 @@ function messageAction(service, id, message_id, action) {
     });
 }
 
-function replyInboxMessage(service, id, message_id, body) {
+function replyInboxMessage(service, id, message_id, body, subject) {
     return new Promise((resolve, reject) => {
         $.ajax({
             type: 'POST',
             url: `${API_URL}/link/${service}/${id}/message/${message_id}/reply`,
             contentType: 'application/json',
-            data: JSON.stringify({ body: body }),
+            data: JSON.stringify(
+                { 
+                    body: body,
+                    subject: subject || null
+                }
+            ),
             xhrFields: {
                 withCredentials: true
             },

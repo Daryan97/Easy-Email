@@ -501,7 +501,7 @@ function getMessage($service, $id, $emailId) {
             if (obj.name === obj.email) {
                 return `<span class="text-dark" id="fromEmail">${obj.email}</span>`;
             } else {
-                return `<span class="text-dark">${obj.name}</span><br><small class="text-muted" id="fromEmail">${obj.email}</small>`;
+                return `<span class="text-dark" id="fromName">${obj.name}</span><br><small class="text-muted" id="fromEmail">${obj.email}</small>`;
             }
         };
 
@@ -583,7 +583,7 @@ function getMessage($service, $id, $emailId) {
 
             <button class="btn btn-secondary rounded-pill px-4 shadow-sm d-flex align-items-center" id="replyEmail">
             <i class="bi bi-reply me-2 fs-5"></i>
-            <span class="fw-semibold">Reply</span>
+            <span class="fw-semibold">Write a Reply</span>
             </button>
         </div>
         </div>
@@ -654,7 +654,14 @@ function smartReply() {
                 const $emailSubject = $('#emailSubject').val();
                 const $iframe = $('#emailContentIframe').contents();
                 const $emailBody = $iframe.find('html').html();
-                const $emailSender = $('#fromEmail').text().trim(); // ← preserved exactly
+                let $emailSender;
+                const $fromName = $('#fromName').text().trim();
+                const $fromEmail = $('#fromEmail').text().trim();
+                if ($fromName && $fromEmail && $fromName !== $fromEmail) {
+                    $emailSender = `${$fromName} <${$fromEmail}>`;
+                } else {
+                    $emailSender = $fromEmail;
+                }
                 const $oauthId = Number($('#selectInbox').val());
 
                 return generateSmartReply($emailSubject, $emailBody, $emailSender, instruction, $oauthId)
@@ -691,7 +698,7 @@ function createReplyEmail(content = '') {
                 <div class="row p-3">
                     <div class="form-group">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="replySubject" value="Re: ${$emailSubject.trim()}" readonly>
+                            <input type="text" class="form-control" id="replySubject" value="Re: ${$emailSubject.trim()}">
                             <label for="replySubject">Subject</label>
                         </div>
                     </div>
@@ -706,7 +713,7 @@ function createReplyEmail(content = '') {
                 <div class="icons icons d-flex justify-content-start">
                     <button class="btn btn-primary m-1" id="sendReplyEmail">
                         <i class="bi bi-reply"></i>
-                        <span>Send</span>
+                        <span>Send Reply</span>
                     </button>
                 </div>
             </div>
@@ -761,6 +768,7 @@ function sendReplyEmail() {
     $sendReplyEmail.on('click', function () {
         const $emailId = $('#emailId').text();
         const $replyContent = $('#replyContent').find('.ql-editor').html();
+        const $replySubject = $('#replySubject').val().trim();
         const $textLength = $replyContent.replace(/<[^>]*>?/gm, '').trim().length;
 
         if ($textLength === 0) {
@@ -775,7 +783,7 @@ function sendReplyEmail() {
         $sendReplyEmail.attr('disabled', true);
         $sendReplyEmail.html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`);
 
-        replyInboxMessage($service, $id, $emailId, $replyContent).then((data) => {
+        replyInboxMessage($service, $id, $emailId, $replyContent, $replySubject).then((data) => {
             const $response = data.message;
             toast($response, 'success');
 

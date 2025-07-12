@@ -147,7 +147,7 @@ class Google:
             return False  # Failure
 
     # Define the reply_email method
-    def reply_email(self, sender, message_id, reply_message, cc=None, bcc=None, attachments=None):
+    def reply_email(self, sender, message_id, reply_message, subject=None, cc=None, bcc=None, attachments=None):
         try:
             # Get the original message using the message ID
             original_message = self.service.users().messages().get(userId='me', id=message_id).execute()
@@ -163,7 +163,7 @@ class Google:
             
 
             # Modify the subject to include "Re:"
-            subject = f"Re: {original_subject}"
+            subject = f"Re: {original_subject}" if not subject else subject
             
             # Create the message
             msg = MIMEMultipart()
@@ -615,7 +615,7 @@ class Microsoft:
             return False
         
     # Define the reply_email method
-    def reply_email(self, sender, message_id, reply_message, cc=None, bcc=None, attachments=None):
+    def reply_email(self, sender, message_id, reply_message, subject=None, cc=None, bcc=None, attachments=None):
         try:
             # Get the original message using the message ID
             original_message = self.get_message(message_id)
@@ -630,7 +630,7 @@ class Microsoft:
             date = original_message['date']
             
             # Modify the subject to include "Re:"
-            subject = f"Re: {original_subject}"
+            subject = f"Re: {original_subject}" if not subject else subject
             
             # Create the message
             msg = MIMEMultipart()

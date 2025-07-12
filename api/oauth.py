@@ -551,7 +551,7 @@ class OAuthMessageReply(Resource):
             # Check if the user is confirmed
             if not user.email_confirmed_at:
                 # Return an error message
-                return {'message': 'You need to verify your account before linking your Google account.'}, 401
+                return {'message': 'You need to verify your account before replying to an email.'}, 401
             
             # Get the OAuth account
             oauth = Oauth.query.filter_by(id=oauth_id, user_id=user.id).first()
@@ -576,6 +576,10 @@ class OAuthMessageReply(Resource):
                     # Return an error message
                     return {'message': 'Body is required.'}, 400
                 
+                if not 'subject' in data or not data['subject']:
+                    # Return an error message
+                    return {'message': 'Subject is required.'}, 400
+                
                 body = data['body'].replace('\n', '<br>')
                 to = data['to'] if 'to' in data else None
                 cc = data['cc'].split(',') if 'cc' in data else None
@@ -588,6 +592,7 @@ class OAuthMessageReply(Resource):
                     sender=sender, 
                     message_id=message_id, 
                     reply_message=body,
+                    subject=data['subject'],
                     cc=cc, 
                     bcc=bcc
                 )
@@ -605,9 +610,13 @@ class OAuthMessageReply(Resource):
                 # Create a new Microsoft object
                 microsoft = Microsoft(json.loads(str(oauth_data).replace("'", '"')))
                 
-                if not 'body' in data:
+                if not 'body' in data or not data['body']:
                     # Return an error message
                     return {'message': 'Body is required.'}, 400
+                
+                if not 'subject' in data or not data['subject']:
+                    # Return an error message
+                    return {'message': 'Subject is required.'}, 400
                 
                 body = data['body']
                 to = data['to'] if 'to' in data else None
@@ -622,6 +631,7 @@ class OAuthMessageReply(Resource):
                     sender=sender,
                     message_id=message_id,
                     reply_message=body,
+                    subject=data['subject'],
                     cc=cc,
                     bcc=bcc
                 )
