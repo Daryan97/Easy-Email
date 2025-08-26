@@ -90,43 +90,109 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 Update these keys in your `.env` (names are examples—match your codebase if it uses different names):
 
 ```dotenv
-# Flask / Security
+# Flask App File
+FLASK_APP=app.py
+# Flask Environment
 FLASK_ENV=development
-SECRET_KEY=replace_me
-FERNET_KEY=32_byte_base64_key_here
+# Flask Debug
+FLASK_DEBUG=True
+# Flask Secret Key
+# To generate a new secret key write the following code in the command line:
+# python import secrets; print(secrets.token_urlsafe())
+SECRET_KEY=**********************************
 
-# Database
-DATABASE_URL=postgresql+psycopg2://user:password@localhost:5432/easy_email
+# Flask Security Password Salt
+# To generate a new password salt write the following code in the command line:
+# python import secrets; print(secrets.SystemRandom().getrandbits(128))
+SECURITY_PASSWORD_SALT=**********************************
 
-# Redis
-REDIS_URL=redis://:your_password@127.0.0.1:6379/0
+# Data Encryption Key
+# To generate a new data encryption key write the following code in the command line:
+# python from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())
+FERNET_KEY='**********************************='
 
-# Cloudflare Workers AI
-WORKERS_AI_ACCOUNT_ID=your_account_id
-WORKERS_AI_API_TOKEN=your_api_token
-WORKERS_AI_MODEL=@cf/meta/llama-3.1-8b-instruct  # example
+# JWT Secret Key
+# To generate a new JWT secret key write the following code in the command line:
+# python import secrets; print(secrets.token_urlsafe())
+JWT_SECRET_KEY=**********************************
+# JWT Cookie Secure
+# Set to True if you are using HTTPS, otherwise set to False (not recommended)
+JWT_COOKIE_SECURE=False
 
-# Google OAuth
-GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
-GOOGLE_REDIRECT_URI=http://127.0.0.1:5000/auth/google/callback
-GOOGLE_SCOPES=email profile openid https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.readonly
-# (optional) add People API scope if you fetch contacts:
-# https://www.googleapis.com/auth/contacts.readonly
+# Flask CORS Allowed Origins
+# Add the allowed origins separated by commas
+# You can allow all origins by setting the value to '*' (not recommended)
+CORS_ORIGINS=http://localhost:5000,http://localhost:5505,http://127.0.0.1:5000,http://127.0.0.1:5505,http://diyari.test,https://7bbe-185-75-224-143.ngrok-free.app
 
-# Microsoft OAuth (Entra ID / Azure App Registration)
-MS_CLIENT_ID=...
-MS_CLIENT_SECRET=...
-MS_TENANT_ID=common
-MS_REDIRECT_URI=http://127.0.0.1:5000/auth/microsoft/callback
-MS_SCOPES=offline_access Mail.ReadWrite Mail.Send User.Read User.ReadBasic.All
+# Choose the database you want to use (mysql, postgres)
+DATABASE_TYPE=postgres
 
-# SMTP (optional, e.g., OTP only)
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USERNAME=no-reply@example.com
-SMTP_PASSWORD=...
-SMTP_TLS=true
+# MySQL Database Configuration
+# Change the values to match your MySQL database configuration
+MYSQL_DATABASE_HOST=localhost
+MYSQL_DATABASE_PORT=3306
+MYSQL_DATABASE_USER=root
+MYSQL_DATABASE_PASSWORD=**********************************
+MYSQL_DATABASE_DB=diyari_ai
+
+# PostgreSQL Database Configuration
+# Change the values to match your PostgreSQL database configuration
+POSTGRES_DATABASE_HOST=localhost
+POSTGRES_DATABASE_PORT=5432
+POSTGRES_DATABASE_USER=postgres
+POSTGRES_DATABASE_PASSWORD=**********************************
+POSTGRES_DATABASE_DB=diyari_ai
+
+# Redis Configuration
+# Change the values to match your Redis server configuration
+REDIS_HOST=165.22.21.18
+REDIS_PORT=6379
+REDIS_PASSWORD=**********************************
+REDIS_DB=0
+
+# Mail Configuration
+# Change the values to match your mail server configuration
+MAIL_SERVER=smtppro.zoho.com
+MAIL_PORT=587
+MAIL_USE_TLS=True
+MAIL_USERNAME=admin@daryandev.com
+MAIL_PASSWORD=**********************************
+MAIL_DEFAULT_SENDER=Easy-Email <admin@daryandev.com>
+
+# OpenAI API Key
+# Change the value to your OpenAI API key
+# Generate a new test API key from PAWAN.KRD discord server: https://discord.pawan.krd
+OPENAI_API_KEY=pk-**********************************
+OPENAI_BASE_URL=https://api.pawan.krd/pai-001/v1
+
+# Cloudflare Workers AI Configuration
+WORKERSAI_BASE_URL=https://gateway.ai.cloudflare.com/v1/**********************************/diyariai
+WORKERSAI_API_KEY=**********************************
+WORKERSAI_MODEL=@cf/meta/llama-3.1-8b-instruct
+ 
+# OAuth Library Insecure Transport (Not recommended for production - change to False)
+OAUTHLIB_INSECURE_TRANSPORT=True
+
+# Google OAuth API Scopes (Send Email, Read Email, Profile, Email, OpenID)
+GOOGLE_SCOPES=https://www.googleapis.com/auth/gmail.send,https://www.googleapis.com/auth/gmail.readonly,https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/userinfo.email,openid
+GOOGLE_CLIENT_SECRET=C:\Users\darya\OneDrive\Documents\diyariai_certs\client_secret.json
+
+# Microsoft OAuth API
+MICROSOFT_CLIENT_ID=*****************************************************
+MICROSOFT_CLIENT_SECRET=********************************************************************
+MICROSOFT_AUTHORITY=https://login.microsoftonline.com/common
+MICROSOFT_SCOPES=https://graph.microsoft.com/.default
+
+# Timezone Offset (Change to the server timezone offset)
+TIMEZONE_OFFSET=3
+
+# Required date for Terms of Service and Privacy Policy
+TERMS_OF_SERVICE_DATE=2024-01-01
+PRIVACY_POLICY_DATE=2024-01-01
+
+# SSL Certificate and Key Files
+SSL_CERT_FILE=C:\Users\darya\OneDrive\Documents\diyariai_certs\cert2.pem
+SSL_KEY_FILE=C:\Users\darya\OneDrive\Documents\diyariai_certs\privkey2.pem
 ```
 
 > **Note:** Make sure your `/auth/google/callback` and `/auth/microsoft/callback` routes exist in the app. If your routes differ, update the redirect URIs and any OAuth config accordingly.
