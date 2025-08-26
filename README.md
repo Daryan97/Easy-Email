@@ -13,7 +13,10 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 - [Google API Setup (Gmail)](#-google-api-setup-gmail)  
 - [Microsoft API Setup (Outlook)](#-microsoft-api-setup-outlook)  
 - [Usage](#-usage)  
-- [Troubleshooting](#-troubleshooting)  
+- [Troubleshooting](#-troubleshooting)
+- [Future Plans](#-future-plans)
+- [Current Collaborators](-current-collaborators)
+- [Collaboration](#-collaboration)
 - [License](#-license)  
 
 ---
@@ -25,7 +28,7 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 - Contact management (create, update, delete, view).
 - Redis-backed rate limiting.
 - Secure authentication and encryption (e.g., Fernet for secrets).
-- Optional SMTP for OTP delivery.
+- SMTP for OTP delivery.
 
 ---
 
@@ -275,6 +278,63 @@ Steps in **Azure Portal** → *Microsoft Entra ID*:
   Check SMTP credentials and TLS settings; some providers require “App Passwords”.
 
 ---
+
+## 🗺️ Future Plans
+
+- **Code Optimization**  
+  Improve the API for better performance, security, and maintainability.
+
+- **Frontend–Backend Separation**  
+  Decouple the frontend from the backend and reimplement the UI using **[Vue.js](https://vuejs.org/)**.
+
+- **Fixing Vulnerabilities**  
+  Update insecure dependencies and refactor code to address security issues.
+
+- **Completing Role System**  
+  Implement a fully functional role-based access control (RBAC) system.
+
+- **Admin Panel for Administrators**  
+  Build a dedicated admin panel to provide administrators with proper management tools, rather than relying on limited testing functions.
+
+- **📱 Mobile App Integration**  
+  Develop a mobile version (iOS/Android) to let users generate and send emails on the go.
+
+- **🌐 Multi-Language Support**  
+  Add translation and tone adaptation so users can write professional emails in different languages.
+
+- **📊 Analytics Dashboard**  
+  Provide insights into email activity (e.g., number of emails sent, response times, AI usage).
+
+- **📂 Templates & Presets**  
+  Allow users to save, manage, and reuse AI-generated email templates for common use cases.
+
+- **🔔 Smart Notifications**  
+  Real-time alerts for important emails and reminders to follow up.
+
+- **🧩 Plugin/Extension Support**  
+  Build Chrome/Outlook/Gmail add-ons to use Easy-Email directly inside existing inboxes.
+
+- **🤝 Team Collaboration**  
+  Shared inbox and team features for businesses (assign/review emails together).
+
+---
+
+## 👥 Current Collaborators
+
+| Name           | Role               | Contact                  |
+|----------------|--------------------|--------------------------|
+| Daryan Latif   | Project Lead       | admin@daryandev.com      |
+
+
+---
+
+## 🤝 Collaboration
+
+Contributions, ideas, and improvements are welcome!  
+If you’re interested in collaborating on this project, please contact me at **admin@daryandev.com**.
+
+---
+
 
 ## 📜 License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
