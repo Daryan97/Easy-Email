@@ -77,7 +77,7 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
    ```bash
    cp .env.example .env
    ```
-   Then open `.env` and fill in the required values (see [Configuration](#configuration)).
+   Then open `.env` and fill in the required values (see [Configuration](#-configuration)).
 
 5. **Create the PostgreSQL database**
    Ensure PostgreSQL is running and create a DB whose name matches your `.env`.
