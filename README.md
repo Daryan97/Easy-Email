@@ -1,5 +1,7 @@
 # Easy-Email
 
+![Easy-Email Logo](https://minio.daryandev.com/api/v1/buckets/main/objects/download?preview=true&prefix=Easy-Email-White-BG.png)
+
 Easy-Email is an AI-powered assistant that helps you generate, edit, and send professional emails.  
 It leverages **Cloudflare Workers AI** for content generation and integrates with **Gmail, Outlook, and other email APIs** to send and manage emails directly in the app. With features like smart replies, contact management, OAuth account linking, and AI-driven drafting, Easy-Email saves time and boosts productivity.
 
