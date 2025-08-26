@@ -6,15 +6,15 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 ---
 
 ## 📑 Contents
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Google API Setup (Gmail)](#google-api-setup-gmail)
-- [Microsoft API Setup (Outlook)](#microsoft-api-setup-outlook)
-- [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
+- [Features](#-features)  
+- [Tech Stack](#-tech-stack)  
+- [Installation](#-installation)  
+- [Configuration](#-configuration)  
+- [Google API Setup (Gmail)](#-google-api-setup-gmail)  
+- [Microsoft API Setup (Outlook)](#-microsoft-api-setup-outlook)  
+- [Usage](#-usage)  
+- [Troubleshooting](#-troubleshooting)  
+- [License](#-license)  
 
 ---
 
