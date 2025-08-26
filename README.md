@@ -236,7 +236,7 @@ Steps in **Azure Portal** → *Microsoft Entra ID*:
 
 1. **App registrations** → *New registration*:  
    - Name your app, choose *Accounts in any organizational directory and personal Microsoft accounts* (or as needed).
-2. After creation, note **Application (client) ID** and **Directory (tenant) ID**.  
+2. After creation, note **Application (client) ID**.  
 3. **Certificates & secrets** → *Client secrets* → *New client secret* → copy the **secret value** (once).  
 4. **Authentication** → add **Redirect URIs** (Web):  
    - `http://127.0.0.1:5000/auth/microsoft/callback`
@@ -249,9 +249,9 @@ Steps in **Azure Portal** → *Microsoft Entra ID*:
    - `User.Read`
    - `User.ReadBasic.All`
    Click **Grant admin consent** (if required by your tenant).  
-6. Put **MS_CLIENT_ID**, **MS_CLIENT_SECRET**, **MS_TENANT_ID** (or `common`), **MS_REDIRECT_URI**, and **MS_SCOPES** in `.env`.
+6. Put **MICROSOFT_CLIENT_ID**, and **MICROSOFT_CLIENT_SECRET** in `.env`.
 
-> For personal Microsoft accounts, `MS_TENANT_ID=common` works. For single-tenant orgs, use the specific tenant ID.
+> For personal Microsoft accounts, `MICROSOFT_AUTHORITY=https://login.microsoftonline.com/common` works. For single-tenant orgs, use the specific tenant ID.
 
 ---
 
