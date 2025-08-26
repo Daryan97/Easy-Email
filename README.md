@@ -11,7 +11,7 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 - [Installation](#-installation)  
 - [Configuration](#-configuration)  
 - [Google API Setup (Gmail)](#-google-api-setup-gmail)  
-- [Microsoft API Setup (Outlook)](#-microsoft-api-setup-outlook)  
+- [Microsoft API Setup (Outlook)](#-microsoft-api-setup-outlook--microsoft-graph)  
 - [Usage](#-usage)  
 - [Troubleshooting](#-troubleshooting)
 - [Future Plans](#-future-plans)
@@ -42,7 +42,7 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 
 ---
 
-## ⚙️ Installation
+## ⚙ Installation
 
 1. **Clone the repository**
    ```bash
@@ -279,7 +279,7 @@ Steps in **Azure Portal** → *Microsoft Entra ID*:
 
 ---
 
-## 🗺️ Future Plans
+## 🎯 Future Plans
 
 - **Code Optimization**  
   Improve the API for better performance, security, and maintainability.
