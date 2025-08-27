@@ -8,7 +8,12 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 ---
 
 ## 📑 Contents
-- [Features](#-features)  
+- [Features](#-features)
+- [Screenshots](#-screenshots)
+   - [Authentication](#-authentication)
+   - [Dashboard & AI Features](#-dashboard--ai-features)
+   - [Email Management](-email-management)
+   - [Contacts & Profile](#-contacts--profile)
 - [Tech Stack](#-tech-stack)  
 - [Installation](#-installation)  
 - [Configuration](#-configuration)  
@@ -31,6 +36,60 @@ It leverages **Cloudflare Workers AI** for content generation and integrates wit
 - Redis-backed rate limiting.
 - Secure authentication and encryption (e.g., Fernet for secrets).
 - SMTP for OTP delivery.
+
+---
+
+## 📷 Screenshots
+
+A quick look at Easy-Email’s interface and key features.
+
+
+### 🔐 Authentication
+
+#### Register Account
+![Register Account](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_register.png?updatedAt=1756251152589)  
+*Create a new account securely.*
+
+#### Login
+![Login](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_login.png?updatedAt=1756251147531)  
+*Sign in to access your dashboard.*
+
+#### Reset Password
+![Reset Password](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_forgot-password.png?updatedAt=1756251147769)  
+*Recover your account with the password reset flow.*
+
+
+### 📊 Dashboard & AI Features
+
+#### Dashboard
+![Dashboard](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_dashboard.png?updatedAt=1756251147591)  
+*Overview of your activity and linked accounts.*
+
+#### AI Email Generation
+![AI Generated Email](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_chat.png?updatedAt=1756251148043)  
+*Use AI to generate and edit professional emails instantly.*
+
+
+### 📩 Email Management
+
+#### Link Account
+![Link Account](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_link_account.png?updatedAt=1756251147425)  
+*Connect Gmail or Outlook to send and receive emails.*
+
+#### Inbox
+![Inbox](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_inbox.png?updatedAt=1756251148120)  
+*Check and manage your incoming emails.*
+
+
+### 👥 Contacts & Profile
+
+#### Contact Management
+![Contacts](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_contacts.png?updatedAt=1756251147644)  
+*Add, edit, and organize your contacts.*
+
+#### Profile Settings
+![Profile](https://ik.imagekit.io/daryandev/Easy-Email/easy-email_profile.png?updatedAt=1756251147934)  
+*Manage your personal information and preferences.*
 
 ---
 
@@ -283,40 +342,40 @@ Steps in **Azure Portal** → *Microsoft Entra ID*:
 
 ## 🎯 Future Plans
 
-- **Code Optimization**  
+- [ ] **Code Optimization**  
   Improve the API for better performance, security, and maintainability.
 
-- **Frontend–Backend Separation**  
+- [ ] **Frontend–Backend Separation**  
   Decouple the frontend from the backend and reimplement the UI using **[Vue.js](https://vuejs.org/)**.
 
-- **Fixing Vulnerabilities**  
+- [ ] **Fixing Vulnerabilities**  
   Update insecure dependencies and refactor code to address security issues.
 
-- **Completing Role System**  
+- [ ] **Completing Role System**  
   Implement a fully functional role-based access control (RBAC) system.
 
-- **Admin Panel for Administrators**  
+- [ ] **Admin Panel for Administrators**  
   Build a dedicated admin panel to provide administrators with proper management tools, rather than relying on limited testing functions.
 
-- **📱 Mobile App Integration**  
+- [ ] **📱 Mobile App Integration**  
   Develop a mobile version (iOS/Android) to let users generate and send emails on the go.
 
-- **🌐 Multi-Language Support**  
+- [ ] **🌐 Multi-Language Support**  
   Add translation and tone adaptation so users can write professional emails in different languages.
 
-- **📊 Analytics Dashboard**  
+- [ ] **📊 Analytics Dashboard**  
   Provide insights into email activity (e.g., number of emails sent, response times, AI usage).
 
-- **📂 Templates & Presets**  
+- [ ] **📂 Templates & Presets**  
   Allow users to save, manage, and reuse AI-generated email templates for common use cases.
 
-- **🔔 Smart Notifications**  
+- [ ] **🔔 Smart Notifications**  
   Real-time alerts for important emails and reminders to follow up.
 
-- **🧩 Plugin/Extension Support**  
+- [ ] **🧩 Plugin/Extension Support**  
   Build Chrome/Outlook/Gmail add-ons to use Easy-Email directly inside existing inboxes.
 
-- **🤝 Team Collaboration**  
+- [ ] **🤝 Team Collaboration**  
   Shared inbox and team features for businesses (assign/review emails together).
 
 ---
