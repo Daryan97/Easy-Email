@@ -342,40 +342,41 @@ Steps in **Azure Portal** → *Microsoft Entra ID*:
 
 ## 🎯 Future Plans
 
-- [ ] **Code Optimization**  
+
+- [ ] ⚡ **Code Optimization**  
   Improve the API for better performance, security, and maintainability.
 
-- [ ] **Frontend–Backend Separation**  
+- [ ] 🖥️ **Frontend–Backend Separation**  
   Decouple the frontend from the backend and reimplement the UI using **[Vue.js](https://vuejs.org/)**.
 
-- [ ] **Fixing Vulnerabilities**  
+- [ ] 🛡️ **Fixing Vulnerabilities**  
   Update insecure dependencies and refactor code to address security issues.
 
-- [ ] **Completing Role System**  
+- [ ] 🔑 **Completing Role System**  
   Implement a fully functional role-based access control (RBAC) system.
 
-- [ ] **Admin Panel for Administrators**  
+- [ ] 🛠️ **Admin Panel for Administrators**  
   Build a dedicated admin panel to provide administrators with proper management tools, rather than relying on limited testing functions.
 
-- [ ] **📱 Mobile App Integration**  
+- [ ] 📱 **Mobile App Integration**  
   Develop a mobile version (iOS/Android) to let users generate and send emails on the go.
 
-- [ ] **🌐 Multi-Language Support**  
+- [ ] 🌐 **Multi-Language Support**  
   Add translation and tone adaptation so users can write professional emails in different languages.
 
-- [ ] **📊 Analytics Dashboard**  
+- [ ] 📊 **Analytics Dashboard**  
   Provide insights into email activity (e.g., number of emails sent, response times, AI usage).
 
-- [ ] **📂 Templates & Presets**  
+- [ ] 📂 **Templates & Presets**  
   Allow users to save, manage, and reuse AI-generated email templates for common use cases.
 
-- [ ] **🔔 Smart Notifications**  
+- [ ] 🔔 **Smart Notifications**  
   Real-time alerts for important emails and reminders to follow up.
 
-- [ ] **🧩 Plugin/Extension Support**  
+- [ ] 🧩 **Plugin/Extension Support**  
   Build Chrome/Outlook/Gmail add-ons to use Easy-Email directly inside existing inboxes.
 
-- [ ] **🤝 Team Collaboration**  
+- [ ] 🤝 **Team Collaboration**  
   Shared inbox and team features for businesses (assign/review emails together).
 
 ---
